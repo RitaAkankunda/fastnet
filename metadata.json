@@ -1,0 +1,5 @@
+{
+  "name": "FASTNET MikroTik Captive Portal",
+  "description": "A comprehensive MikroTik Hotspot portal management system and generator, featuring optimized login pages, payment integration workflows for Uganda (MTN/Airtel), and RouterOS setup scripts.",
+  "requestFramePermissions": []
+}
