@@ -27,12 +27,37 @@ fastnet is a single-page experience that showcases a captive portal preview and 
 3. Start both the UI and Express mocks together (optional):
 	```bash
 	npm run dev:all
-	```
-4. Build for production:
+## Deployment
+
+### Frontend (Netlify)
+
+1. Build the SPA locally:
 	```bash
 	npm run build
 	```
-5. Serve the built assets locally:
-	```bash
-	npm run preview
+2. Connect your Git repo to Netlify and configure the build command as `npm run build` with `dist` as the publish directory, or drag the `dist/` folder onto the Netlify UI for a manual upload.
+3. Add a `_redirects` file inside `dist/` with `/* /index.html 200` so the single-page router always falls back to the React entry point.
+4. Use `npm run preview` if you want to sanity-check the production bundle before deploying.
+
+### Backend (Vercel)
+
+1. Ensure `server/index.js` exports an Express app and respects `process.env.PORT` (already wired to Vite’s dev server), then add a `vercel.json` at the repo root such as:
+	```json
+	{
+	  "functions": {
+	    "server/index.js": {
+	      "runtime": "nodejs20.x",
+	      "memory": 512
+	    }
+	  },
+	  "rewrites": [
+	    { "source": "/api/:path*", "destination": "/server/index.js" }
+	  ]
+	}
 	```
+2. Deploy:
+	- Install the Vercel CLI (`npm install -g vercel`).
+	- Run `vercel --prod` from the repo root and follow the prompts to select your team, project, and root directory (keep it as the repository root so `server/index.js` is reachable).
+3. After deployment, point your frontend (Netlify) or other clients at the Vercel endpoint (e.g., `https://fastnet-backend.vercel.app/api/...`).
+
+The separation gives you a snappy static frontend on Netlify while the Express API runs in Vercel’s serverless environment.

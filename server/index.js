@@ -50,4 +50,8 @@ app.post('/webhook', (req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(port, () => console.log(`FASTNET backend listening on http://localhost:${port}`));
+if (require.main === module) {
+  app.listen(port, () => console.log(`FASTNET backend listening on http://localhost:${port}`));
+}
+
+module.exports = app;
