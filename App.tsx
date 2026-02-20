@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { PortalSettings, Package } from './types';
 import { PACKAGES } from './constants';
-import PortalPreview from './components/PortalPreview';
+import PortalPreview from './PortalPreview';
 
 const App: React.FC = () => {
   const [packages] = useState<Package[]>(PACKAGES);
