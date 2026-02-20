@@ -1,5 +1,10 @@
 # fastnet
 
+## Live deployments
+
+- **Frontend:** https://fast-net-routing.netlify.app — Netlify-hosted SPA that publishes `dist/` with `_redirects` so routing stays within the app.
+- **Backend:** https://fastnet-backend.vercel.app — Vercel serverless Express API handling `/initiate-payment`, `/check-status`, and `/webhook`.
+
 ## About
 
 fastnet is a single-page experience that showcases a captive portal preview and builder for FASTNET, a high-speed fiber/wireless provider. The UI is built with React components and mirrors the payment, voucher, and success flows that an operator would expose to their customers.
@@ -27,6 +32,8 @@ fastnet is a single-page experience that showcases a captive portal preview and 
 3. Start both the UI and Express mocks together (optional):
 	```bash
 	npm run dev:all
+	```
+
 ## Deployment
 
 ### Frontend (Netlify)
@@ -61,3 +68,8 @@ fastnet is a single-page experience that showcases a captive portal preview and 
 3. After deployment, point your frontend (Netlify) or other clients at the Vercel endpoint (e.g., `https://fastnet-backend.vercel.app/api/...`).
 
 The separation gives you a snappy static frontend on Netlify while the Express API runs in Vercel’s serverless environment.
+
+## Live deployments
+
+- **Frontend:** fast-net-routing.netlify.app — the Netlify site serving the React bundle and configured with `_redirects` so routing stays within the SPA.
+- **Backend:** fastnet-backend (https://fastnet-backend.vercel.app) — the Vercel serverless function exposing `/initiate-payment`, `/check-status`, and `/webhook` for the portal preview.
